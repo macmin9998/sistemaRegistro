@@ -134,8 +134,8 @@ $mail->Host = "smtp.gmail.com";
 $mail->Port = 587;
 $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
-$mail->Username = "elizabeth.diaz@blackinntech.com";
-$mail->Password = "Elizabeth30112909";
+$mail->Username = "corre_";
+$mail->Password = "contrasena_de_correo";
 
 
 
