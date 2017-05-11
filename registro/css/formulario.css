@@ -1,0 +1,21 @@
+.form1{		
+
+
+
+  width: 400px;
+
+  margin: 0 auto;
+  
+  height: auto ;
+
+
+  text-align: center;											
+  background-color: rgba(147, 161, 163, 0.7);
+  padding: 20px;
+
+  -webkit-border-radius: 3px 5px 1px 4px; /* recuerda la primera frase */
+-moz-border-radius: 4px; /* si quieres todas las esquinas iguales */
+border-radius: 3px;
+  }
+
+  

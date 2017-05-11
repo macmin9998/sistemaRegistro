@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+		REPORTE DE VISITAS
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<!--hojas de estilos-->
+		<link rel="stylesheet" href="css/estilos-reporte.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--fin de hojas de estilos-->
+		<!--script para validar cajas de texto--> 
+		<script type="text/javascript" src="js/reporte.js"></script>
+		<!--inicio de calendarios-->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    	<!--fin de calendarios-->
+		<!--funcion de calendarios para cajas de texto-->
+		<script>
+      		$( function() {
+      		$( "#datepicker" ).datepicker();
+      		} );    
+      		$( function() {
+      		$( "#datepicker1" ).datepicker();
+      		} );
+    	</script>
+	</head>
+	<body>
+		<div class="form1">
+			<p><h3>REGISTRO</h3><p>
+			<form name="form" action="pdf.php" method="POST" onsubmit="return validar();">	
+            
+            <div class="form-group">
+            <input type="radio" name="valor_boton" value="1" onclick="activar1()"/> Buscar por correo
+            <br>
+            <br>
+            <input type="radio" name="valor_boton" value="2" onclick="activar2()"/> Buscar por rango de fechas
+            <br>
+            <br>
+            <input type="radio" name="valor_boton" value="3" onclick="activar3()"/> Buscar por correo y rango de fechas
+            </div>
+
+        		<div class="form-group">
+         			<label>Correo de la Persona Visitada</label> 
+         			<input name="PersonaVisitada" id="text1"type="text" class="form-control"  disabled="disabled">
+        		</div>
+        		
+            <div class="form-group">
+         			<label>Fecha inicial</label> 
+         			<input name="FechaInicio" type="text" id="datepicker" class="form-control" disabled="disabled">
+        		</div>
+        		
+            <div class="form-group">
+         	 		<label>Fecha final</label>
+          			<input name="FechaFinal" type="text" id="datepicker1" class="form-control" disabled="disabled">
+        		</div>
+    			  
+            <input type=submit name=ok value="Buscar" class="btn-group btn-group-lg">
+     		
+        </form>
+    	</div>
+	</body>
+</html>

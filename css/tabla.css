@@ -1,0 +1,43 @@
+.formula{		
+
+
+
+
+width: auto;
+
+  
+  
+  height: auto ;
+
+
+  text-align: left;		
+
+  background-color: rgba(147, 161, 163, 0.5);
+  padding: 4px;
+
+  -webkit-border-radius: 3px 5px 1px 4px; /* recuerda la primera frase */
+-moz-border-radius: 4px; /* si quieres todas las esquinas iguales */
+border-radius: 3px; 
+
+
+}
+
+table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 13px;    margin: 10px;     width: auto ; text-align: left;    border-collapse: collapse; 
+
+
+}
+
+th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
+
+td {    padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
+    color: #669;    border-top: 1px solid transparent; }
+
+tr:hover td { background: #d0dafd; color: #339; }
+
+
+
+
+
+  
