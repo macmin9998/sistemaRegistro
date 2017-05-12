@@ -1,36 +1,65 @@
+
+
+
 <?php
 include "includes/dbconection.php";
 
-   if(isset($_POST['enviarb'])){
-       $errors = array();
+if(isset($_POST['enviarb'])){
+    $errors = array();
 
-   if(!ctype_alpha($_POST['nombre']) || empty($_POST['nombre']) ){ 
+    if(!ctype_alpha($_POST['nombre']) || empty($_POST['nombre']) ){ 
         $errors[]="Valor invalida nombre";
-   }
-   if(!ctype_alnum($_POST['rfc']) || empty($_POST['rfc']) || strlen($_POST['rfc']) != 13  ){ 
+    }
+    if(!ctype_alnum($_POST['rfc']) || empty($_POST['rfc']) || strlen($_POST['rfc']) != 13  ){ 
         $errors[]="rfc no valido";
-   }
-   if(!ctype_alnum($_POST['direccion']) || empty($_POST['direccion']) ){ 
+    }
+    if(empty($_POST['direccion']) ){ 
         $errors[]="direccion no valida";
-   }
+    }
 
-        
-      
 
- if(count($errors) == 0 ){
+
+
+
+
+
+    if(count($errors) == 0 ){
         $nombre= $_POST['nombre'];
         $rfc= $_POST['rfc'];
         $direccion= $_POST['direccion'];
-        
-        
-  $nva_empresa=$conexion->query("insert into Empresa(nombre,RFC,direccion) values ('$nombre','$rfc','$direccion')");
 
 
-    
-}
+        $nva_empresa=$conexion->query("insert into Empresa(nombre,RFC,direccion) values ('$nombre','$rfc','$direccion')");
+        if($nva_empresa){
+            $mensaje="¡Empresa registrada!";
+        }else{
+            $mensaje="Ups algo fallo, no se registro";
+        }
+
+        ?>
+        <script type="text/javascript">
+                var mensaje = "<?php echo $mensaje ?>"
+     
+                 window.onload = ver_mensaje;
+     
+                 function ver_mensaje(){
+                    if(mensaje != ""){
+                    alert(mensaje)
+                    }
+                }
+
+        </script>
+
+<?php
+
+
+
     }
 
- 
+
+}
+
+
 ?>
 
 
@@ -64,8 +93,8 @@ include "includes/dbconection.php";
 
                 if(isset($errors) and count($errors) > 0 ){
                     foreach($errors as $error){
-                        echo $error;
-                        echo"<br>";
+                        echo"<div class='alert alert-info' role='alert' style='height:4px; width:40%; margin:0 auto;'>";
+                        echo"<strong>¡Cuidado!</strong> ".$error."</div>";
                     }
                 }
  

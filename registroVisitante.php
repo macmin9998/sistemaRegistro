@@ -1,57 +1,77 @@
 <?php
 include "includes/dbconection.php";
 
-   if(isset($_POST['enviarv'])){
-       $errors = array();
+if(isset($_POST['enviarv'])){
+    $errors = array();
 
-       if(!ctype_alpha($_POST['nombre']) || empty($_POST['nombre']) ){ 
-           $errors[]="Valor invalido nombre";
-       }
-       if(!ctype_alpha($_POST['paterno']) || empty($_POST['paterno']) ){ 
-           $errors[]="Valor invalida apellido paterno";
-       }
-       if(!ctype_alpha($_POST['materno']) || empty($_POST['materno']) ){ 
-           $errors[]="Valor invalido para Apellido materno";
-       }
-      if(!ctype_alpha($_POST['origen']) || empty($_POST['origen']) ){ 
-           $errors[]="Valor invalido para Origen";
-      }
-      if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)  || empty($_POST['email']) ) {
-           $errors[]="correo no valido";
-      }
-        
-      
+    if(!ctype_alpha($_POST['nombre']) || empty($_POST['nombre']) ){ 
+        $errors[]="Valor invalido para nombre";
+    }
+    if(!ctype_alpha($_POST['paterno']) || empty($_POST['paterno']) ){ 
+        $errors[]="Valor invalido para apellido paterno";
+    }
+    if(!ctype_alpha($_POST['materno']) || empty($_POST['materno']) ){ 
+        $errors[]="Valor invalido para Apellido materno";
+    }
+    if(!ctype_alpha($_POST['origen']) || empty($_POST['origen']) ){ 
+        $errors[]="Valor invalido para Origen";
+    }
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)  || empty($_POST['email']) ) {
+        $errors[]="correo no valido";
+    }
 
-      if(count($errors) == 0 ){
+
+
+    if(count($errors) == 0 ){
         $nombre= $_POST['nombre'];
         $apaterno= $_POST['paterno'];
         $amaterno= $_POST['materno'];
-       
+
         $email= $_POST['email'];
         $origen=$_POST['origen'];
-     
+
 
         $busquedaVisitante=$conexion->query("select email from visitantes where email='$email'   ");
-     if($busquedaVisitante->num_rows > 0){
-         echo"el usuario ya existe";
+        if($busquedaVisitante->num_rows > 0){
+            echo"el usuario ya existe";
 
-     }else{
-              $nva_visitantes=$conexion->query("insert into visitantes(nombre,a_paterno,a_materno,email,empresa_origen) values ('$nombre','$apaterno','$amaterno','$email','$origen')");
+        }else{
+            $nva_visitantes=$conexion->query("insert into visitantes(nombre,a_paterno,a_materno,email,empresa_origen) values ('$nombre','$apaterno','$amaterno','$email','$origen')");
 
-               echo "<script language='JavaScript'>"; 
-               echo "alert(' Registro Correcto ');";
-               echo "</script>";
+            if($nva_visitantes){
+            
+                $mensaje="¡Visitante registrado!";
+            }else{
+
+                $mensaje="Ups algo fallo, no se registro";
+            }
+
+            ?> 
+
+            <script type="text/javascript">
+                var mensaje = "<?php echo $mensaje ?>"
+     
+                 window.onload = ver_mensaje;
+     
+                 function ver_mensaje(){
+                    if(mensaje != ""){
+                    alert(mensaje)
+                    }
+                }
+
+            </script>
+
+            <?php
+
+        }
 
 
-          }
-
-
-
-
-      }
 
 
     }
+
+
+}
 
 ?>
 

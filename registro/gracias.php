@@ -24,7 +24,7 @@
             <div class="form1">
                
                    
-                      <font size="10"> <label>Gracias, su visita a sido regristrada </label></font> 
+                      <font size="10"> <label>Gracias, su visita a sido registrada </label></font> 
                       <br>
                             <a class="btn btn-primary btn-sm" href="index2.php" role="button">Regresar al inicio</a>
                     

@@ -1,66 +1,73 @@
 <?php
 
 include "includes/dbconection.php";
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 
 if(isset($_POST['btn_enviar'])){
 
-$errors = array();
+    $errors = array();
 
-if(!ctype_alpha($_POST['nombre_txt']) || empty($_POST['nombre_txt']) ){ 
+    if(!ctype_alpha($_POST['nombre_txt']) || empty($_POST['nombre_txt']) ){ 
         $errors[]="Nombre de Colaborador no valido";
+    }
+
+
+
+    if(count($errors) == 0 ){
+
+        $nombreB=$_POST['nombre_txt'];
+        $busqueda=$conexion->query("select id_colaborador, nombre,a_paterno,a_materno,status, correo,clave from Colaborador where  nombre like '%".$nombreB."%' ");
+
+    }    
+
+
+
+
+
 }
 
+if(isset($_POST['btn_modificar'])) {
+
+    $id_eliminar=$_POST['id_text'];
+
+    $nombre=$_POST['nombre_n'];
+    $paterno=$_POST['paterno_n'];
+    $materno=$_POST['materno_n'];
+    $correo=$_POST['correo_n'];
+    $clave=$_POST['clave_n'];
+    $status=$_POST['select_txt1'];
 
 
-if(count($errors) == 0 ){
+    $modificar=$conexion->query(" update Colaborador  SET  nombre='$nombre', a_paterno='$paterno',a_materno='$materno',correo='$correo',
+        clave='$clave', status=$status where id_colaborador=$id_eliminar");
+    
+    if($modificar){
+        $mensaje="¡Colaborador modificado!";
+    }else{
+        $mensaje="Ups algo fallo, no se modifico";
+    }
 
-$nombreB=$_POST['nombre_txt'];
-$busqueda=$conexion->query("select id_colaborador, nombre,a_paterno,a_materno,status, correo,clave from Colaborador where  nombre like '%".$nombreB."%' ");
-                                          
-}    
+     ?>
+        <script type="text/javascript">
+                var mensaje = "<?php echo $mensaje ?>"
+     
+                 window.onload = ver_mensaje;
+     
+                 function ver_mensaje(){
+                    if(mensaje != ""){
+                    alert(mensaje)
+                    }
+                }
 
+        </script>
 
-
-
-
-}
-
-
-if(isset($_POST['btn_baja'])){
-  
-  $id_eliminar=$_POST['id_text'];
-
-
-$eliminar=$conexion->query(" update Colaborador  SET status=0 where id_colaborador=$id_eliminar");
-
-?>
-<script type="text/javascript">
-  alert("Colaborador dado de baja");
-</script>
 <?php
-
-
-}else if(isset($_POST['btn_modificar'])) {
-
-$id_eliminar=$_POST['id_text'];
-
-$nombre=$_POST['nombre_n'];
-$paterno=$_POST['paterno_n'];
-$materno=$_POST['materno_n'];
-$correo=$_POST['correo_n'];
-$clave=$_POST['clave_n'];
-$status=$_POST['select_txt1'];
-
-
-$modificar=$conexion->query(" update Colaborador  SET  nombre='$nombre', a_paterno='$paterno',a_materno='$materno',correo='$correo',
-clave='$clave', status=$status where id_colaborador=$id_eliminar");
-
-
-
-
-
 }
+
+
+
 
 
 
@@ -139,7 +146,7 @@ clave='$clave', status=$status where id_colaborador=$id_eliminar");
                           <td><b>CLAVE</b></td>
                           <td><b>STATUS</b></td>
                           <td><b>     </b></td> 
-                          <td><b>     </b></td> 
+                         
 
                           </tr>                           
 <?php

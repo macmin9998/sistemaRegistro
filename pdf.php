@@ -24,7 +24,7 @@ echo $aux_nombre;
 
   </head>
 
-  <body background="bt.png">
+  <body background="images/bt.png">
 	  <div id="HTMLtoPDF">
 		  <?php
 			  if($aux_boton==1)
@@ -98,7 +98,7 @@ echo $aux_nombre;
  		        }
             else{
                  echo"<div class='alert alert-info' role='alert' style='height:4px; width:40%; margin:0 auto;'>";
-                 echo"<strong>¡Cuidado!</strong> La persona no tiene visitas</div>";
+                 echo"<strong>¡Hola! ,</strong> La persona no tiene visitas</div>";
                 }
             }  
         } 
@@ -176,7 +176,7 @@ echo $aux_nombre;
         }
         else{
               echo"<div class='alert alert-info' role='alert' style='height:4px; width:40%; margin:0 auto;'>";
-              echo"<strong>¡Cuidado!</strong> No hay visitas en esas fechas</div>";
+              echo"<strong>¡Hola!,</strong> No hay visitas en esas fechas</div>";
             }    
 	       }
       }
@@ -253,7 +253,7 @@ echo $aux_nombre;
             }
             else{
                  echo"<div class='alert alert-info' role='alert' style='height:4px; width:40%; margin:0 auto;'>";
-                 echo"<strong>¡Cuidado!</strong> La persona no tiene visitas</div>";
+                 echo"<strong>¡Hola!, </strong> La persona no tiene visitas</div>";
                 }
             }  
         } 

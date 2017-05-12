@@ -5,7 +5,7 @@
 
 	$conexion=new mysqli("localhost","root","123","sistema");
 
-	$busqueda=$conexion->query("select * from Colaborador where correo='{$usuario}' and clave='{$clave}'");
+	$busqueda=$conexion->query("select * from Colaborador where correo='{$usuario}' and clave='{$clave}' and status=1 ");
 
 	if(isset($busqueda))
 	{
@@ -22,7 +22,9 @@
 	    $consulta=$conexion->query("select visita.fecha,visita.hora,visitantes.nombre, visitantes.a_paterno, visitantes.empresa_origen 
 	    	from visita  inner join visitantes on visitantes.id_visitante = visita.id_visitante 
 	    	where visita.id_colaborador='{$id}' and visita.fecha =curdate()");
-
+ 			
+ 		
+    
 
 
 ?>
